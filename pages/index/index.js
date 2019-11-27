@@ -4,7 +4,9 @@ Page({
     // 轮播图图片数组
     swiperList:[],
     // 导航栏数组
-    navs:[]
+    navs:[],
+    // 楼层数组
+    floorList:[]
   },
   //options(Object)
   onLoad: function(options) {
@@ -25,6 +27,16 @@ Page({
          this.setData({navs: result.data.message})
       }
     });
+
+    // 获取楼层数据
+    wx.request({
+      url: 'https://api.zbztb.cn/api/public/v1/home/floordata',
+      success: (result) => {
+        // console.log(result);
+        this.setData({floorList: result.data.message})
+      }
+    });
+      
       
       
   },

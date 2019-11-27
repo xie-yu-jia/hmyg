@@ -13,3 +13,17 @@
         <image class="image" src="{{item.image_src}}" mode="widthFix" />
     </navigator>
 </view>
+
+<!-- 楼层 -->
+<view class="floor">
+    <view class="floor_group" wx:for="{{floorList}}" wx:for-item="item1" wx:for-index="index1" wx:key="item1.floor_title">
+        <view class="floor_title">
+            <image class="image_title" src="{{item1.floor_title.image_src}}" mode="widthFix"/>
+        </view>
+        <view class="floor_content_group">
+            <navigator class="floor_content" wx:for="{{item1.product_list}}" wx:for-item="item2" wx:for-index="index2" wx:key="item2.name">
+                <image class="floor_image" src="{{item2.image_src}}" mode="{{index2 === 0 ? 'widthFix' : 'scaleToFill'}}" />
+            </navigator>
+        </view>
+    </view>
+</view>

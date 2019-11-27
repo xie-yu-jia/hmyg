@@ -3,7 +3,7 @@
 }
 .nav {
   display: flex;
-  padding: 5px 0;
+  padding: 5rpx 0;
 }
 .nav .nav_item {
   flex: 1;
@@ -11,4 +11,12 @@
 }
 .nav .nav_item .image {
   width: 70%;
+}
+.floor .floor_group .floor_content_group .floor_content {
+  float: left;
+  width: 33%;
+}
+.floor .floor_group .floor_content_group .floor_content:nth-last-child(-n+4) .floor_image {
+  display: block;
+  height: 207.97413793rpx;
 }
