@@ -2,7 +2,9 @@
 Page({
   data: {
     // 轮播图图片数组
-    swiperList:[]
+    swiperList:[],
+    // 导航栏数组
+    navs:[]
   },
   //options(Object)
   onLoad: function(options) {
@@ -14,6 +16,16 @@ Page({
         this.setData({swiperList: result.data.message})
       },
     });
+
+    // 获取导航栏数据
+    wx.request({
+      url: 'https://api.zbztb.cn/api/public/v1/home/catitems',
+      success: (result) => {
+        //  console.log(result);
+         this.setData({navs: result.data.message})
+      }
+    });
+      
       
   },
   onReady: function() {
