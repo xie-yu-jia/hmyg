@@ -5,3 +5,7 @@ page, view, text, image, button, input, swiper, swiper-item, navigator, checkbox
     padding: 0;
     box-sizing: border-box;
 }
+
+image{
+    width: 100%;
+}
