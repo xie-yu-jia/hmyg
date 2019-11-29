@@ -1,18 +1,36 @@
+import request from "../../request/request";
+
 // pages/category/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
 
+   // wxml中只能找到 data 中的变量的数据 __ data中的数据越多页面越卡
+   // data中应该只存放要渲染的数据
+  data: {
+    // 左边数据
+    cateLeft: [],
+    // 右边数据
+    cateRight: []
   },
+
+  // js内部的全局数据, wxml里面找不到 
+  CateList: [],
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取数据
+    request({ url: "categories" })
+      .then(res => {
+        // console.log(res);
+        this.CateList = res.data.message;
+        this.setData({ cateLeft: this.CateList.map(v => v.cat_name), cateRight: this.CateList[0].children })
 
+      })
   },
 
   /**

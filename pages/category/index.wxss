@@ -1,1 +1,43 @@
-/* pages/category/index.wxss */
+.category_container {
+  /* 子项的高度默认等于父项的高度 */
+  height: calc(100vh - 80rpx);
+  display: flex;
+}
+.category_container .category_left {
+  width: 200rpx;
+  /* 内容不超出盒子高度默认没有滚动条,超出了有滚动条 */
+  overflow: auto;
+}
+.category_container .category_left_title {
+  height: 80rpx;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+}
+.category_container .good_cate {
+  flex: 1;
+  /* 内容不超出盒子高度默认没有滚动条,超出了有滚动条 */
+  overflow: auto;
+}
+.category_container .good_cate .category_right_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80rpx;
+  font-size: 26rpx;
+}
+.category_container .good_cate .category_right_content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.category_container .good_cate .category_right_content_item {
+  width: 33%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #666;
+}
+.category_container .good_cate .category_right_content_item .item_img {
+  width: 50%;
+}
