@@ -4,7 +4,7 @@
 <view class="category_container">
     <!-- 左边 -->
     <view class="category_left">
-        <view class="category_left_title" wx:for="{{cateLeft}}" wx:key="item">{{item}}</view>
+        <view bindtap="handleTap" data-index="{{index}}" class="category_left_title {{currentIndex == index ? 'active' : ''}}" wx:for="{{cateLeft}}" wx:key="item">{{item}}</view>
     </view>
     <!-- 右边 -->
     <view class="good_cate">

@@ -41,3 +41,7 @@
 .category_container .good_cate .category_right_content_item .item_img {
   width: 50%;
 }
+.active {
+  border-left: 5rpx solid red;
+  color: red;
+}

@@ -13,7 +13,9 @@ Page({
     // 左边数据
     cateLeft: [],
     // 右边数据
-    cateRight: []
+    cateRight: [],
+    // 被激活的索引
+    currentIndex: 0
   },
 
   // js内部的全局数据, wxml里面找不到 
@@ -28,10 +30,19 @@ Page({
       .then(res => {
         // console.log(res);
         this.CateList = res.data.message;
-        this.setData({ cateLeft: this.CateList.map(v => v.cat_name), cateRight: this.CateList[0].children })
+        this.setData({ cateLeft: this.CateList.map(v => v.cat_name), cateRight: this.CateList[this.data.currentIndex].children })
 
       })
   },
+
+  // 左侧的点击事件
+  handleTap(e){
+    // console.log(e);
+    const {index} = e.currentTarget.dataset;
+    this.setData({currentIndex: index,cateRight: this.CateList[index].children})
+    
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
