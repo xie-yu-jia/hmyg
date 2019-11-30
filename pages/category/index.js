@@ -15,7 +15,9 @@ Page({
     // 右边数据
     cateRight: [],
     // 被激活的索引
-    currentIndex: 0
+    currentIndex: 0,
+    // 右侧滚动条的距离
+    scrollTop: 0
   },
 
   // js内部的全局数据, wxml里面找不到 
@@ -39,7 +41,7 @@ Page({
   handleTap(e){
     // console.log(e);
     const {index} = e.currentTarget.dataset;
-    this.setData({currentIndex: index,cateRight: this.CateList[index].children})
+    this.setData({currentIndex: index,cateRight: this.CateList[index].children, scrollTop: 0})
     
   },
 

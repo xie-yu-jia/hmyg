@@ -7,7 +7,7 @@
         <view bindtap="handleTap" data-index="{{index}}" class="category_left_title {{currentIndex == index ? 'active' : ''}}" wx:for="{{cateLeft}}" wx:key="item">{{item}}</view>
     </view>
     <!-- 右边 -->
-    <view class="good_cate">
+    <scroll-view scroll-y scroll-top="{{scrollTop}}" class="good_cate">
         <view class="category_right" wx:for="{{cateRight}}" wx:for-item="item1" wx:for-index="index1" wx:key="cat_id">
             <view class="category_right_title">/ {{item1.cat_name}} /</view>
             <view class="category_right_content">
@@ -17,5 +17,5 @@
                 </view>
             </view>
         </view>
-    </view>
+    </scroll-view>
 </view>
