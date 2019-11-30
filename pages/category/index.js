@@ -26,7 +26,35 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad() {
+    // 获取缓存中的数据
+    const cates = wx.getStorageSync('cates');
+    // 如果没有数据就发送请求
+    if(!cates){
+      this.getCateList()
+    }else{
+      // 如果有数据
+      // 判断是否过期   10s
+      if(Date.now() - cates.time > 10 * 1000){
+        // 过期了就重新发起请求
+        this.getCateList()
+      }else{
+        // 如果没有过期
+        // 全局总数据
+        this.CateList = cates.list;
+
+        this.setData({
+          // 左侧菜单栏数据
+          cateLeft: this.CateList.map(v=>v.cat_name),
+          // 右侧商品列表数据
+          cateRight: this.CateList[this.data.currentIndex].children
+        })
+      }
+    }
+    
+  },
+
+  getCateList(){
     // 获取数据
     request({ url: "categories" })
       .then(res => {
@@ -34,6 +62,9 @@ Page({
         this.CateList = res.data.message;
         this.setData({ cateLeft: this.CateList.map(v => v.cat_name), cateRight: this.CateList[this.data.currentIndex].children })
 
+        // 把数据存储到缓存中
+        wx.setStorageSync("cates", {list: this.CateList, time: Date.now()});
+          
       })
   },
 
