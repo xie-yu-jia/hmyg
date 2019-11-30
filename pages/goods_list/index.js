@@ -1,18 +1,42 @@
 // pages/goods_list/index.js
+import request from "../../request/request";
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    // 要显示的商品列表
+    goods: []
+  },
+  // 全局的接口参数
+  Params:{
+    query	:	"",  // 查询关键字
+    cid	:	0,    // 分类id
+    pagenum	:	1,  // 页码数
+    pagesize	: 10,   // 页容量
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(options);
+    this.Params.cid = options.cid
+    this.getList()
+  },
 
+  // 获取商品列表数据
+  getList(){
+    request({
+      url: "goods/search",
+      data: this.Params
+    }).then(res=>{
+      // console.log(res);
+      this.setData({
+        goods: res.data.message.goods
+      })
+    })
   },
 
   /**

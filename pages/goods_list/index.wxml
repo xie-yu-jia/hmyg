@@ -1,2 +1,15 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<!-- 搜索框组件 -->
+<SearchInput/>
+
+<!-- 商品列表 -->
+<view class="goods_list">
+    <navigator class="goods_item" wx:for="{{goods}}" wx:key="goods_id">
+        <view class="img_wrap">
+            <image class="image" mode="widthFix" src="{{item.goods_small_logo || 'http://image2.suning.cn/uimg/b2c/newcatentries/0000000000-000000000826147951_1_400x400.jpg'}}"></image>
+        </view>
+        <view class="content">
+            <view class="content_title">{{item.goods_name}}</view>
+            <view class="content_price">￥{{item.goods_price}}</view>
+        </view>
+    </navigator>
+</view>

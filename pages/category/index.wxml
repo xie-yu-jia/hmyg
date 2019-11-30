@@ -11,10 +11,10 @@
         <view class="category_right" wx:for="{{cateRight}}" wx:for-item="item1" wx:for-index="index1" wx:key="cat_id">
             <view class="category_right_title">/ {{item1.cat_name}} /</view>
             <view class="category_right_content">
-                <view class="category_right_content_item" wx:for="{{item1.children}}" wx:for-item="item2" wx:for-index="index2" wx:key="cat_id">
+                <navigator url="/pages/goods_list/index?cid={{item2.cat_id}}" class="category_right_content_item" wx:for="{{item1.children}}" wx:for-item="item2" wx:for-index="index2" wx:key="cat_id">
                     <image class="item_img" src="{{item2.cat_icon}}" mode="widthFix"/>
                     <view class="item_name">{{item2.cat_name}}</view>  
-                </view>
+                </navigator>
             </view>
         </view>
     </scroll-view>
