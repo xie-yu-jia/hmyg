@@ -6,3 +6,71 @@
 .swiper_wrap .swiper_list .swiper_item .image {
   width: 60%;
 }
+.price {
+  color: var(--themeColor);
+  padding-left: 20rpx;
+  font-weight: 600;
+}
+.goods_name_wrap {
+  display: flex;
+  font-size: 28rpx;
+  color: #666;
+  padding: 16rpx;
+  border-bottom: 6rpx solid #ccc;
+}
+.goods_name_wrap .goods_name {
+  flex: 5;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.goods_name_wrap .goods_collect {
+  flex: 1;
+  text-align: center;
+  border-left: 1px solid #000;
+  margin-left: 40rpx;
+}
+.goods_desc {
+  padding-bottom: 80rpx;
+}
+.goods_desc .goods_desc_title {
+  color: var(--themeColor);
+  font-weight: 600;
+  padding: 20rpx 0 20rpx 20rpx;
+  border-bottom: 1px solid #ccc;
+}
+.btm_tools {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #fff;
+  display: flex;
+  width: 100%;
+  height: 80rpx;
+}
+.btm_tools .btm_tools_left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 20rpx;
+}
+.btm_tools .btm_tools_left .btm_tools_left_item {
+  width: 33%;
+  text-align: center;
+}
+.btm_tools .btm_tools_right {
+  flex: 1;
+  display: flex;
+  background: var(--themeColor);
+  color: #fff;
+  font-size: 28rpx;
+}
+.btm_tools .btm_tools_right .btm_tools_right_item {
+  flex: 1;
+  line-height: 80rpx;
+  text-align: center;
+}
+.btm_tools .btm_tools_right .btm_tools_right_item:first-child {
+  background: #ffa500;
+}
