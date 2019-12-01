@@ -62,6 +62,18 @@ Page({
         this.getList()        
       }
   },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+      // 数据重置
+      this.Params.pagenum = 1;
+      this.setData({ goods: [] });      
+      // 发送请求
+      this.getList();
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -90,12 +102,6 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
 
   /**
    * 用户点击右上角分享
