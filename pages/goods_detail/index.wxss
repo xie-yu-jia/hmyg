@@ -1,1 +1,8 @@
-/* pages/goods_detail/index.wxss */
+.swiper_wrap .swiper_list {
+  /* 让轮播图的高度等于宽度 */
+  height: 60vw;
+  text-align: center;
+}
+.swiper_wrap .swiper_list .swiper_item .image {
+  width: 60%;
+}
