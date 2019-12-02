@@ -58,6 +58,14 @@
 .btm_tools .btm_tools_left .btm_tools_left_item {
   width: 33%;
   text-align: center;
+  position: relative;
+}
+.btm_tools .btm_tools_left .btm_tools_left_item button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  opacity: 0;
 }
 .btm_tools .btm_tools_right {
   flex: 1;

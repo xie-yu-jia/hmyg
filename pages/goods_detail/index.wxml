@@ -33,15 +33,17 @@
         <view class="btm_tools_left_item">
             <text class="iconfont icon-kefu"></text>
             <view class="icon_name">联系客服</view>
+            <button open-type="contact"></button>
         </view>
         <view class="btm_tools_left_item">
             <text class="iconfont icon-yixianshi-"></text>
             <view class="icon_name">分享</view>
+            <button open-type="share"></button>
         </view>
-        <view class="btm_tools_left_item">
+        <navigator open-type="switchTab" url="/pages/cart/index" class="btm_tools_left_item">
             <text class="iconfont icon-gouwuche"></text>
             <view class="icon_name">购物车</view>
-        </view>
+        </navigator>
     </view>
     <view class="btm_tools_right">
         <view class="btm_tools_right_item">加入购物车</view>
