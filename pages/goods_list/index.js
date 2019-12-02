@@ -80,7 +80,7 @@ Page({
 
   // 点击TabBar改变索引 
   bindtabbarChange(e){
-    console.log(e);
+    // console.log(e);
     this.setData({currentIndex: e.detail.index})
   },
 

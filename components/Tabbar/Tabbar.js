@@ -28,7 +28,7 @@ Component({
    */
   methods: {
     handleTabbar(e){
-      console.log(e);
+      // console.log(e);
       const index = e.currentTarget.dataset.index;
 
       this.triggerEvent("tabbarChange",{index});

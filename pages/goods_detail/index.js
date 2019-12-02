@@ -24,9 +24,24 @@ Page({
       url: 'goods/detail',
       data: { goods_id }
     }).then(res=>{
-      // console.log(res);
+      console.log(res.data.message);
       this.setData({ goodsInfo: res.data.message })
     })
+  },
+
+  // 点击轮播图图片放大预览
+  handlePreviewImage(e){
+    // console.log(e);
+
+    // 当前显示图片的http链接
+    const current = e.currentTarget.dataset.src;
+    // 需要预览的图片http链接列表
+    const urls = this.data.goodsInfo.pics.map(v=>v.pics_big);
+    // 预览图片---内置API 
+    wx.previewImage({
+      current,
+      urls
+    });
   },
 
   /**
