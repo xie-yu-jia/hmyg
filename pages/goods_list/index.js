@@ -7,7 +7,11 @@ Page({
    */
   data: {
     // 要显示的商品列表
-    goods: []
+    goods: [],
+    // Tabbar数组
+    tabbarList: ["综合","销量","价格"],
+    // TabBar的索引
+    currentIndex: 0,
   },
   // 全局的接口参数
   Params:{
@@ -72,6 +76,12 @@ Page({
       this.setData({ goods: [] });      
       // 发送请求
       this.getList();
+  },
+
+  // 点击TabBar改变索引 
+  bindtabbarChange(e){
+    console.log(e);
+    this.setData({currentIndex: e.detail.index})
   },
 
   /**
