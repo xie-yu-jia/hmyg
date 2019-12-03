@@ -46,7 +46,7 @@
         </navigator>
     </view>
     <view class="btm_tools_right">
-        <view class="btm_tools_right_item">加入购物车</view>
+        <view class="btm_tools_right_item" bindtap="handleGoodsAdd">加入购物车</view>
         <view class="btm_tools_right_item">立即购买</view>
     </view>
 </view>

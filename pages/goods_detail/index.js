@@ -24,7 +24,7 @@ Page({
       url: 'goods/detail',
       data: { goods_id }
     }).then(res=>{
-      console.log(res.data.message);
+      // console.log(res.data.message);
       this.setData({ goodsInfo: res.data.message })
     })
   },
@@ -42,6 +42,33 @@ Page({
       current,
       urls
     });
+  },
+
+  // 点击加入购物车
+  handleGoodsAdd(){
+    // 1. 获取购物车的数组 此时缓存中没有
+    let carts = wx.getStorageSync("carts") || [];
+      // console.log(carts);
+    // 2. 判断当前商品是否已经存在
+    const index = carts.findIndex(v => v.goods_id === this.data.goodsInfo.goods_id)
+    // 3. 判断逻辑
+    if(index === -1){
+      // 如果不存在 就添加到购物车里面, 顺便添加一个购买数量属性
+      carts.unshift({...this.data.goodsInfo,nums: 1});
+    }else{
+      // 如果存在了, 当前商品的数量 +1
+      carts[index].nums++;
+    }
+    // 4. 重新添加到缓存中
+    wx.setStorageSync("carts", carts);
+    
+    // 提示加入购物车成功
+    wx.showToast({
+      title: '加入购物车成功',
+      mask: true
+    });
+      
+    
   },
 
   /**
