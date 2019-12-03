@@ -1,3 +1,7 @@
+// 识别es7语法文件
+import regeneratorRuntime from '../../lib/runtime/runtime';
+// 封装的三个API
+import { getSetting, chooseAddress, openSetting } from "../../utils/wxAsync";
 // pages/cart/index.js
 Page({
 
@@ -8,6 +12,20 @@ Page({
 
   },
 
+  // 点击获取收货地址按钮
+  async handleAddress(){
+    // 获取用户的授权状态
+    const auth = (await getSetting()).authSetting["scope.userInfo"];
+    // console.log(auth);
+    // 如果没有授权就打开授权页面
+    if(auth === false){
+      await openSetting()
+    }
+    // 如果授权了就获取收货地址
+    const res = await chooseAddress()
+    console.log(res);
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
