@@ -9,7 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    // 用户的收货地址
+    address: {}
   },
 
   // 点击获取收货地址按钮
@@ -24,8 +25,20 @@ Page({
     // 如果授权了就获取收货地址
     const res = await chooseAddress()
     console.log(res);
+    // 把数据存到缓存中
+    wx.setStorageSync("address", res);
     
   },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow() {
+    // 把收货地址设置到data中
+    const address = wx.getStorageSync("address") || {};
+    this.setData({address})
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -37,13 +50,6 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
 
   },
 
