@@ -1,7 +1,8 @@
 // 识别es7语法文件
 import regeneratorRuntime from '../../lib/runtime/runtime';
-// 封装的三个API
-import { getSetting, chooseAddress, openSetting } from "../../utils/wxAsync";
+import { getSetting, chooseAddress, openSetting, login } from "../../utils/wxAsync";
+import request from "../../request/request";
+
 // pages/cart/index.js
 Page({
 
@@ -52,4 +53,23 @@ Page({
     this.setData({totalPrice, nums, allChecked})
   },
 
+  // 点击支付
+  async bindGetUserInfo(e){
+    // console.log(e);
+    // 获取用户信息中的参数
+    const { encryptedData, rawData, iv, signature } = e.detail
+    // 执行微信小程序的内置登录API
+    const { code } = await login()
+    
+    const loginParams = { encryptedData, rawData, iv, signature, code }
+
+    // 获取用户的token
+    const {token} = (await request({
+        url: "users/wxlogin",
+        method: "post",
+        data: loginParams
+    })).data.message
+    // console.log(token);
+    
+  }
 })
