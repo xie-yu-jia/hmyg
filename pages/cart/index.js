@@ -150,6 +150,33 @@ Page({
     
   },
 
+  // 点击结算
+  handleAccount(){
+    // 获取收货地址和购物车
+    const { address, carts } = this.data;
+    // 如果没有地址就提示用户
+    if(!address.userName){
+      wx.showToast({
+        title: '请选择您的收货地址',
+        icon: 'none',
+        mask: true,
+      });
+      return
+    }else if(carts.filter(v=> v.isChecked).length === 0){
+      // 如果没有选中的商品 提示用户
+      wx.showToast({
+        title: '请选择您要购买的商品',
+        icon: 'none',
+        mask: true,
+      });
+      return
+    }
+    // 满足条件就跳转到支付页
+    wx.navigateTo({
+      url: '/pages/pay/index',
+    });
+      
+  },
 
   /**
    * 生命周期函数--监听页面加载
