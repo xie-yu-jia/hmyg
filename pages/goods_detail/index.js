@@ -53,8 +53,8 @@ Page({
     const index = carts.findIndex(v => v.goods_id === this.data.goodsInfo.goods_id)
     // 3. 判断逻辑
     if(index === -1){
-      // 如果不存在 就添加到购物车里面, 顺便添加一个购买数量属性
-      carts.unshift({...this.data.goodsInfo,nums: 1});
+      // 如果不存在 就添加到购物车里面, 顺便添加一个购买数量属性 , 添加一个默认选中属性
+      carts.unshift({...this.data.goodsInfo, nums: 1, isChecked: true});
     }else{
       // 如果存在了, 当前商品的数量 +1
       carts[index].nums++;

@@ -15,7 +15,7 @@
             <!-- 复选框 -->
             <view class="carts_checked">
                 <checkbox-group>
-                    <checkbox></checkbox>
+                    <checkbox checked="{{item.isChecked}}"></checkbox>
                 </checkbox-group>
             </view>
             <!-- 图片 -->
@@ -52,8 +52,8 @@
         </checkbox-group>
     </view>
     <view class="summation">
-        <view class="total_price">合计: <text class="text_price">￥</text></view>
+        <view class="total_price">合计: <text class="text_price">￥{{totalPrice}}</text></view>
         <view class="freight">包含运费</view>
     </view>
-    <view class="account">结算()</view>
+    <view class="account">结算({{nums}})</view>
 </view>
