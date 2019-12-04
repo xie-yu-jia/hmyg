@@ -28,9 +28,9 @@
                 <view class="cart_price_nums">
                     <view class="cart_price">￥{{item.goods_price}}</view>
                     <view class="cart_nums">
-                        <view class="nums_btn">-</view>
+                        <view class="nums_btn" bindtap="handleNumUpdate" data-index="{{index}}" data-unit="{{-1}}">-</view>
                         <view class="nums_item">{{item.nums}}</view>
-                        <view class="nums_btn">+</view>
+                        <view class="nums_btn" bindtap="handleNumUpdate" data-index="{{index}}" data-unit="{{1}}">+</view>
                     </view>
                 </view>
             </view>

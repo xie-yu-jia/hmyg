@@ -80,6 +80,56 @@ Page({
     this.setData({totalPrice, nums})
   },
 
+  // 点击加减按钮
+  handleNumUpdate(e){
+    // 获取点击的索引和点击的按钮
+    const {index, unit} = e.currentTarget.dataset;
+    // 获取data中的购物车数组
+    const {carts} = this.data;
+
+    if(unit === 1 && carts[index].nums >= carts[index].goods_number){
+      // 如果当前数量大于等于库存 提示用户
+      wx.showToast({
+        title: '库存不足',
+        icon: 'none',
+        mask: true,
+      });
+      return        
+    }else if(unit === -1 && carts[index].nums === 1){
+      // 如果当前商品数量为1,并且点击了减, 提示用户是否要删除
+      wx.showModal({
+        title: '提示',
+        content: '您是否要删除这个商品',
+        showCancel: true,
+        cancelText: '取消',
+        cancelColor: '#000000',
+        confirmText: '确定',
+        confirmColor: '#3CC51F',
+        success: (result) => {
+          if (result.confirm) {
+            // 如果确定 删除这个商品
+            carts.splice(index,1)
+            // 重新设置购物车数据
+            this.setData({carts})
+            wx.setStorageSync("carts", carts);
+            // 重新计算
+            this.countAll(carts)
+          }else{
+            console.log("取消");
+          }
+        }
+      });
+    }else{
+      carts[index].nums += unit
+      // 重新设置购物车数据
+      this.setData({carts})
+      wx.setStorageSync("carts", carts);
+      // 重新计算
+      this.countAll(carts)
+    }
+    
+  },
+
 
   /**
    * 生命周期函数--监听页面加载
