@@ -1,7 +1,112 @@
-.address_view{
+.address_view {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40rpx 0;
-    border-bottom: 10rpx solid var(--themeColor);    
+    border-bottom: 10rpx solid var(--themeColor);
 }
+
+.carts_list {
+    margin-bottom: 122rpx;
+    .carts_item {
+        display: flex;
+        padding: 20rpx;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        .carts_checked {
+            flex: 1;
+        }
+
+        .cart_img {
+            flex: 2;
+            image{
+                // width: 70%;
+            }
+        }
+
+        .cart_info {
+            flex: 5;
+            padding: 4rpx 0;
+            margin-left: 10rpx;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .cart_info_title {
+                font-size: 28rpx;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                overflow: hidden;
+            }
+
+            .cart_price_nums {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                font-size: 28rpx;
+                .cart_price {
+                    color: var(--themeColor);
+                }
+
+                .cart_nums {
+                    display: flex;
+                    align-items: center;
+                    .nums_btn {
+                        border: 1rpx solid #ccc;
+                        padding: 4rpx 10rpx;
+                    }
+
+                    .nums_item {
+                        margin: 0 10rpx;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.btm_count {
+    display: flex;
+    align-items: center;
+    height: 120rpx;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    background: #fff;
+    width: 100%;
+    padding-left: 40rpx;
+    .all_checked {
+        flex: 1;
+    }
+  
+    .summation {
+        text-align: right;
+        margin-right: 20rpx;
+        flex: 1;
+      .total_price {
+        font-size: 34rpx;
+        .text_price {
+            color: var(--themeColor);
+
+        }
+      }
+      .freight{
+          font-size: 24rpx;
+          color: #999
+      }
+  
+    }
+  
+    .account {
+        flex: 1;
+        width: 300rpx;
+        height: 100%;
+        background: var(--themeColor);
+        font-size: 34rpx;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+  }

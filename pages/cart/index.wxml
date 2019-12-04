@@ -1,6 +1,59 @@
+<!-- 收货地址 -->
 <view class="address_view">
     <!-- 没有收货地址就显示按钮 -->
     <button wx:if="{{!address.userName}}" bindtap="handleAddress">+ 获取收货地址</button>
     <!-- 有收货地址就显示地址 -->
-    <view wx:else>{{address.userName}} {{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</view>
+    <view wx:else>{{address.userName}}
+        {{address.provinceName}}{{address.cityName}}{{address.countyName}}{{address.detailInfo}}</view>
+</view>
+
+<!-- 购物车列表 -->
+<view class="carts_list">
+    <!-- 如果购物车有商品 -->
+    <block wx:if="{{carts.length !== 0}}">
+        <view class="carts_item" wx:for="{{carts}}" wx:key="index">
+            <!-- 复选框 -->
+            <view class="carts_checked">
+                <checkbox-group>
+                    <checkbox></checkbox>
+                </checkbox-group>
+            </view>
+            <!-- 图片 -->
+            <view class="cart_img">
+                <image src="{{item.goods_small_logo}}" mode="widthFix" />
+            </view>
+            <!-- 商品信息 -->
+            <view class="cart_info">
+                <view class="cart_info_title">{{item.goods_name}}</view>
+                <view class="cart_price_nums">
+                    <view class="cart_price">￥{{item.goods_price}}</view>
+                    <view class="cart_nums">
+                        <view class="nums_btn">-</view>
+                        <view class="nums_item">{{item.nums}}</view>
+                        <view class="nums_btn">+</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </block>
+    <!-- 如果购物车没有商品 -->
+    <view wx:else>
+        <image mode="widthFix"
+            src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1575284185731&di=fa7274a75c77c854376759edb73b47d9&imgtype=0&src=http%3A%2F%2Fhbimg.b0.upaiyun.com%2Fe1b1467beea0a9c7d6a56b32bac6d7e5dcd914f7c3e6-YTwUd6_fw658">
+        </image>
+    </view>
+</view>
+
+<!-- 底部结算栏 -->
+<view class="btm_count">
+    <view class="all_checked">
+        <checkbox-group>
+            <checkbox>全选</checkbox>
+        </checkbox-group>
+    </view>
+    <view class="summation">
+        <view class="total_price">合计: <text class="text_price">￥</text></view>
+        <view class="freight">包含运费</view>
+    </view>
+    <view class="account">结算()</view>
 </view>

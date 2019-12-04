@@ -10,7 +10,9 @@ Page({
    */
   data: {
     // 用户的收货地址
-    address: {}
+    address: {},
+    // 购物车数组
+    carts: []
   },
 
   // 点击获取收货地址按钮
@@ -37,13 +39,17 @@ Page({
     // 把收货地址设置到data中
     const address = wx.getStorageSync("address") || {};
     this.setData({address})
+
+    // 获取缓存中的购物车数组数据
+    const carts = wx.getStorageSync("carts") || [];
+    this.setData({carts})
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad() {
+    
   },
 
   /**
