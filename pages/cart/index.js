@@ -16,7 +16,9 @@ Page({
     // 商品总价格
     totalPrice: 0,
     // 商品总数量
-    nums: 0
+    nums: 0,
+    // 全选按钮的选中状态
+    allChecked: true
   },
 
   // 点击获取收货地址按钮
@@ -71,13 +73,31 @@ Page({
   countAll(carts){
     let totalPrice = 0
     let nums = 0
+    // 如果有一个商品没选中, 全选的状态就是false
+    let allChecked = true
     carts.forEach(e => {
       if(e.isChecked){
         totalPrice += e.goods_price * e.nums;
         nums += e.nums
+      }else{
+        allChecked = false
       }
     });
-    this.setData({totalPrice, nums})
+    this.setData({totalPrice, nums, allChecked})
+  },
+
+  // 点击了全选按钮
+  handlCheckAll(){
+    // 获取自己的选中状态和购物车数组
+    let { allChecked, carts } = this.data;
+    allChecked = !allChecked
+    carts.forEach(e => {
+      e.isChecked = allChecked
+    });
+    // 重新设置数据和计算
+    this.setData({carts})
+    wx.setStorageSync("carts", carts);
+    this.countAll(carts)
   },
 
   // 点击加减按钮

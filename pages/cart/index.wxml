@@ -47,8 +47,8 @@
 <!-- 底部结算栏 -->
 <view class="btm_count">
     <view class="all_checked">
-        <checkbox-group>
-            <checkbox>全选</checkbox>
+        <checkbox-group bindchange="handlCheckAll">
+            <checkbox checked="{{allChecked}}">全选</checkbox>
         </checkbox-group>
     </view>
     <view class="summation">
