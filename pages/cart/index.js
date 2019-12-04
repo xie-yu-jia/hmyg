@@ -46,7 +46,29 @@ Page({
     // 获取缓存中的购物车数组数据
     const carts = wx.getStorageSync("carts") || [];
 
+    this.setData({address, carts})
+
     // 计算总价格 商品总数量
+    this.countAll(carts)
+  },
+
+  // 单个商品复选框的选中事件
+  checkboxChange(e){
+    // 获取点击的商品的索引
+    const {index} = e.currentTarget.dataset
+    const {carts} = this.data;
+    // 对复选框的选中状态取反
+    carts[index].isChecked = !carts[index].isChecked
+    // 把数组重新设置到 data和缓存中
+    this.setData({carts})
+    wx.setStorageSync("carts", carts);
+    // 重新计算
+    this.countAll(carts)
+
+  },
+
+  // 计算总价格 商品总数量
+  countAll(carts){
     let totalPrice = 0
     let nums = 0
     carts.forEach(e => {
@@ -55,12 +77,9 @@ Page({
         nums += e.nums
       }
     });
-
-    this.setData({address, carts, totalPrice, nums})
-
+    this.setData({totalPrice, nums})
   },
 
-  // 计算总价格
 
   /**
    * 生命周期函数--监听页面加载

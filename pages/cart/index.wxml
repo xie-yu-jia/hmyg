@@ -14,7 +14,7 @@
         <view class="carts_item" wx:for="{{carts}}" wx:key="index">
             <!-- 复选框 -->
             <view class="carts_checked">
-                <checkbox-group>
+                <checkbox-group bindchange="checkboxChange" data-index="{{index}}">
                     <checkbox checked="{{item.isChecked}}"></checkbox>
                 </checkbox-group>
             </view>
