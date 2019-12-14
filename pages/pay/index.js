@@ -30,7 +30,8 @@ Page({
     // 获取缓存中的购物车数组数据
     const carts = wx.getStorageSync("carts") || [];
 
-    this.setData({address, carts})
+    // carts 应该要返回用户选择了的商品
+    this.setData({address, carts: carts.filter(v => v.isChecked)})
 
     // 计算总价格 商品总数量
     this.countAll(carts)
@@ -70,6 +71,22 @@ Page({
         data: loginParams
     })).data.message
     // console.log(token);
-    
+
+    // 获取订单编号  需要参数
+    let orderParams = {
+      // 订单的总价格
+      order_price: this.data.totalPrice,
+      // 收货地址
+      consignee_addr: this.data.address.provinceName,
+      // 商品数组 具体的说明看接口文档
+      goods: this.data.carts.map(v => ({
+        goods_id: v.goods_id,
+        // 购买的数量
+        goods_number: v.nums,
+        goods_price: v.goods_price
+      }))
+    }
+    // 创建订单 获取订单编号
+    const order_number = (await request({url: "my/orders/create", method: "post", data: orderParams, header: { Authorization: token}})).data.message.order_number;
   }
 })
