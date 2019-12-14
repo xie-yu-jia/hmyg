@@ -60,3 +60,18 @@ export const login = ()=>{
           
     })
 }
+
+/*
+    微信登录
+*/
+export const requestPayment = (pay) => {
+    return new Promise((resolve, reject) => {
+        wx.requestPayment({
+            ...pay,
+            success: (result) => {
+                resolve(result)
+            },
+        });
+          
+    })
+}

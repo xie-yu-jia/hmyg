@@ -1,6 +1,6 @@
 // 识别es7语法文件
 import regeneratorRuntime from '../../lib/runtime/runtime';
-import { getSetting, chooseAddress, openSetting, login } from "../../utils/wxAsync";
+import { getSetting, chooseAddress, openSetting, login, requestPayment } from "../../utils/wxAsync";
 import request from "../../request/request";
 
 // pages/cart/index.js
@@ -88,5 +88,35 @@ Page({
     }
     // 创建订单 获取订单编号
     const order_number = (await request({url: "my/orders/create", method: "post", data: orderParams, header: { Authorization: token}})).data.message.order_number;
+
+    // 获取支付参数
+    const pay = (await request({ url: "my/orders/req_unifiedorder", method: "post", data: { order_number }, header: { Authorization: token } })).data.message.pay;
+
+    // 调起微信支付  手机会出现支付的画面
+    const res = (await requestPayment(pay))
+
+    // 还需要查看一下 我们自己后台的订单状态
+    const resl = (await request({ url: "my/orders/chkOrder", method: "post", data: { order_number }, header: { Authorization: token } }));
+
+    // 获取缓存中完整的购物车数据
+    let carts = wx.getStorageSync("carts")
+    // 留下未选中的商品
+    carts = carts.filter(v => !v.isChecked)
+    wx.setStorageSync("carts", carts);
+
+    // 弹出窗口 提示用户
+    wx.showToast({
+      title: '支付成功',
+      duration: 1500,
+      mask: true,
+      success: (result) => {
+        wx.navigateTo({
+          url: '/pages/order/index.js',
+        });
+                  
+      },
+    });
+      
+      
   }
 })
